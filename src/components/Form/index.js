@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { NavigationContext } from "react-navigation";
 
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -27,7 +26,7 @@ const Form = ({
           width={150}
           height={50}
           textColor="white"
-          onSubmit={onSubmit}
+          onSubmit={() => onSubmit(title, content)}
         />
       </View>
     </View>

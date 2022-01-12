@@ -12,7 +12,7 @@ const EditScreen = ({ navigation }) => {
   return (
     <Form
       buttonTitle="Submit"
-      onSubmit={(id, title, content) =>
+      onSubmit={(title, content) =>
         updateTodo(id, title, content, () => navigation.pop())
       }
       titleVal={todo.title}
