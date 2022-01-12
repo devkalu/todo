@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { EvilIcons } from "@expo/vector-icons";
+
 import { Context } from "../../context/BlogContext";
 
 const DetailScreen = ({ navigation }) => {
@@ -10,8 +12,23 @@ const DetailScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>{todo.title}</Text>
+      <Text>{todo.content}</Text>
     </View>
   );
+};
+
+DetailScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: () => (
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("Edit", { id: navigation.getParam("id") })
+        }
+      >
+        <EvilIcons name="pencil" size={35} style={{ marginHorizontal: 20 }} />
+      </TouchableOpacity>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({

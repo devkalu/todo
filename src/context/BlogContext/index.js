@@ -14,6 +14,10 @@ const reducer = (state, action) => {
           content: action.payload.content,
         },
       ];
+    case "update_todo":
+      return state.map((todo) => {
+        return todo.id === action.payload.id ? action.payload : todo;
+      });
     case "delete_todo":
       return state.filter((todo) => todo.id !== action.payload);
     default:
@@ -22,8 +26,9 @@ const reducer = (state, action) => {
 };
 
 const addTodo = (dispatch) => {
-  return (title, content) => {
+  return (title, content, callback) => {
     dispatch({ type: "add_todo", payload: { title, content } });
+    callback();
   };
 };
 
@@ -32,9 +37,14 @@ const deleteTodo = (dispatch) => {
     dispatch({ type: "delete_todo", payload: id });
   };
 };
-
+const updateTodo = (dispatch) => {
+  return (id, title, content, callback) => {
+    dispatch({ type: "update_todo", payload: { id, title, content } });
+    callback();
+  };
+};
 export const { Context, Provider } = createDataContext(
   reducer,
-  { addTodo, deleteTodo },
-  []
+  { addTodo, deleteTodo, updateTodo },
+  [{ title: "Test Post", content: "Test Content", id: 1 }]
 );

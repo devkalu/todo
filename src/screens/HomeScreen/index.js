@@ -16,7 +16,6 @@ const HomeScreen = ({ navigation }) => {
   const { state, addTodo, deleteTodo } = useContext(Context);
   return (
     <View style={styles.container}>
-      <Button title="Add Todos" onPress={addTodo} />
       <FlatList
         data={state}
         keyExtractor={(item) => item.id}

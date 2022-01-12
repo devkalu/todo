@@ -7,7 +7,7 @@ const Button = ({
   width,
   height,
   textColor,
-  action,
+  onSubmit,
 }) => {
   return (
     <TouchableOpacity
@@ -20,7 +20,7 @@ const Button = ({
         },
         styles.container,
       ]}
-      onPress={action}
+      onPress={onSubmit}
     >
       <Text
         style={{ color: textColor, fontSize: height / 3, fontWeight: "700" }}
