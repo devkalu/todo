@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 
 //local imports
 import createDataContext from "../createDataContext";
+import jsonServer from "../../api/jsonServer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -28,7 +29,9 @@ const reducer = (state, action) => {
 const addTodo = (dispatch) => {
   return (title, content, callback) => {
     dispatch({ type: "add_todo", payload: { title, content } });
-    callback();
+    if (callback) {
+      callback();
+    }
   };
 };
 
@@ -40,7 +43,9 @@ const deleteTodo = (dispatch) => {
 const updateTodo = (dispatch) => {
   return (id, title, content, callback) => {
     dispatch({ type: "update_todo", payload: { id, title, content } });
-    callback();
+    if (callback) {
+      callback();
+    }
   };
 };
 export const { Context, Provider } = createDataContext(
