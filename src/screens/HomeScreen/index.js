@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,7 +13,12 @@ import { Feather } from "@expo/vector-icons";
 import { Context } from "../../context/BlogContext";
 
 const HomeScreen = ({ navigation }) => {
-  const { state, addTodo, deleteTodo } = useContext(Context);
+  const { state, addTodo, deleteTodo, getTodos } = useContext(Context);
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -25,9 +30,7 @@ const HomeScreen = ({ navigation }) => {
               onPress={() => navigation.navigate("Detail", { id: item.id })}
             >
               <View style={styles.row}>
-                <Text style={styles.title}>
-                  {item.title} - {item.id}
-                </Text>
+                <Text style={styles.title}>{item.title}</Text>
                 <TouchableOpacity onPress={() => deleteTodo(item.id)}>
                   <Feather name="trash" style={styles.icon} />
                 </TouchableOpacity>
@@ -69,6 +72,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    width: "65%",
   },
 });
 

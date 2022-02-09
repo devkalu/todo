@@ -6,6 +6,8 @@ import jsonServer from "../../api/jsonServer";
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "get_todos":
+      return action.payload;
     case "add_todo":
       return [
         ...state,
@@ -26,9 +28,17 @@ const reducer = (state, action) => {
   }
 };
 
+const getTodos = (dispatch) => {
+  return async () => {
+    const response = await jsonServer.get("/todos");
+    dispatch({ type: "get_todos", payload: response.data });
+  };
+};
+
 const addTodo = (dispatch) => {
-  return (title, content, callback) => {
-    dispatch({ type: "add_todo", payload: { title, content } });
+  return async (title, content, callback) => {
+    await jsonServer.post("/todos", { title, content });
+    //dispatch({ type: "add_todo", payload: { title, content } });
     if (callback) {
       callback();
     }
@@ -50,6 +60,6 @@ const updateTodo = (dispatch) => {
 };
 export const { Context, Provider } = createDataContext(
   reducer,
-  { addTodo, deleteTodo, updateTodo },
-  [{ title: "Test Post", content: "Test Content", id: 1 }]
+  { addTodo, deleteTodo, updateTodo, getTodos },
+  []
 );

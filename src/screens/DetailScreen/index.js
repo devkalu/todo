@@ -11,8 +11,8 @@ const DetailScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{todo.title}</Text>
-      <Text>{todo.content}</Text>
+      <Text style={styles.title}>{todo.title}</Text>
+      <Text style={styles.content}>{todo.content}</Text>
     </View>
   );
 };
@@ -34,6 +34,16 @@ DetailScreen.navigationOptions = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: "500",
+    letterSpacing: 2,
+    textDecorationLine: "underline",
+    marginBottom: 10,
+  },
+  content: {
+    fontSize: 18,
   },
 });
 
