@@ -17,6 +17,12 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     getTodos();
+    const listener = navigation.addListener("didFocus", () => {
+      getTodos();
+    });
+    return () => {
+      listener.remove();
+    };
   }, []);
 
   return (
