@@ -18,7 +18,14 @@ const Form = ({
   return (
     <View style={styles.container}>
       <Input name={titlePlaceholder} val={title} onChangeVal={setTitle} />
-      <Input name={contentPlaceholder} val={content} onChangeVal={setContent} />
+      <Input
+        name={contentPlaceholder}
+        val={content}
+        onChangeVal={setContent}
+        multiline={true}
+        numberOfLines={5}
+        height={200}
+      />
       <View style={[styles.verticalSpace, { alignItems: "center" }]}>
         <Button
           title={buttonTitle}

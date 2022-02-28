@@ -11,8 +11,8 @@ const CreateScreen = ({ navigation }) => {
 
   return (
     <Form
-      titlePlaceholder="Enter Title"
-      contentPlaceholder="Enter Content"
+      titlePlaceholder="What task would you like to do today?"
+      contentPlaceholder="How do you intend on acomplishing this task?"
       buttonTitle="Create Todo"
       onSubmit={(title, content) =>
         addTodo(title, content, () => navigation.navigate("Home"))

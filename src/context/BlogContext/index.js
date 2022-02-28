@@ -63,6 +63,7 @@ const updateTodo = (dispatch) => {
 };
 export const { Context, Provider } = createDataContext(
   reducer,
+
   { addTodo, deleteTodo, updateTodo, getTodos },
   []
 );

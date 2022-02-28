@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 
-const Input = ({ name, val, onChangeVal }) => {
+const Input = ({
+  name,
+  val,
+  onChangeVal,
+  multiline = false,
+  numberOfLines = 1,
+  height = 50,
+}) => {
   return (
-    <View>
+    <View style={[styles.container, { height: height }]}>
       <TextInput
         placeholder={name}
         value={val}
@@ -11,6 +18,8 @@ const Input = ({ name, val, onChangeVal }) => {
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={onChangeVal}
+        multiline={multiline}
+        numberOfLines={numberOfLines}
       />
     </View>
   );
@@ -18,10 +27,12 @@ const Input = ({ name, val, onChangeVal }) => {
 
 const styles = StyleSheet.create({
   input: {
-    borderBottomColor: "grey",
-    borderBottomWidth: 2,
     height: 50,
     fontSize: 18,
+  },
+  container: {
+    borderBottomColor: "grey",
+    borderBottomWidth: 2,
   },
 });
 
